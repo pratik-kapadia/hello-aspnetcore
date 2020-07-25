@@ -37,8 +37,8 @@ stages:
         tags: |
           $(tag)
           
-    - publish: manifests
-      artifact: manifests
+    - publish: manifest
+      artifact: manifest
 
 - stage: Deploy
   displayName: Deploy stage
@@ -59,8 +59,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+                $(Pipeline.Workspace)/manifest/deployment.yml
+                $(Pipeline.Workspace)/manifest/service.yml
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
 
